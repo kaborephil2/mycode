@@ -1,0 +1,7 @@
+export OS_AUTH_URL=win
+export OS_IDENTITY_API_VERSION=3
+export OS_PROJECT_NAME=to do
+export OS_PROJECT_DOMAIN_NAME=ipdns
+export OS_USERNAME=phil
+export OS_USER_DOMAIN_NAME=user.com
+export OS_PASSWORD=1234
