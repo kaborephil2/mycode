@@ -13,6 +13,7 @@ def showInstructions():
     Commands:
       go [direction]
       get [item]
+      win [prize]
     ''')
 
 def showStatus():
@@ -31,20 +32,25 @@ def showStatus():
 #an inventory, which is initially empty
 inventory = []
 
+# prizes, which is initially empty
+prizes = []
+
 #a dictionary linking a room to other rooms
 rooms = {
 
             'Hall' : { 
                   'south' : 'Kitchen',
                   'east'  : 'Dining Room',
-                  'west'  : 'Rest Room',
+                  'west'  : 'Restroom',
                   'north' : 'Garden',
-                  'item'  : 'key'
+                  'item'  : 'key',
+                  'prize' : '$40 bill'
                 },
 
             'Kitchen' : {
                   'north' : 'Hall',
                   'item'  : 'monster',
+                  'prize' : 'gold chain'
                 },
             'Dining Room' : {
                   'west' : 'Hall',
@@ -53,10 +59,11 @@ rooms = {
                },
             'Garden' : {
                   'north' : 'Dining Room',
-                  'item'  : 'swimming pool'
+                  'item'  : 'swimming pool',
+                  'prize' : 'diamond'
             },
 
-            'Rest Room' : {
+            'Restroom' : {
                   'south' : 'Kitchen',
                   'east'  : 'Dining Room',
                   'item'  : 'toilet paper'
@@ -105,6 +112,16 @@ while True:
             #delete the item from the room
             del rooms[currentRoom]['item']
         #otherwise, if the item isn't there to get
+        else:
+            #tell them they can't get it
+            print('Can\'t get ' + move[1] + '!')
+
+    if move[0] == 'win' :
+        if "prize" in rooms[currentRoom] and move[1] in rooms[currentRoom]['prize']:
+            #add the item to their inventory
+            prizes += [move[1]]
+            #display a helpful message
+            print(move[1] + ' got!')
         else:
             #tell them they can't get it
             print('Can\'t get ' + move[1] + '!')
